@@ -12,6 +12,7 @@ class Montacargas {
 	public:
 		// Public Declarations
 		Montacargas(double);
+		~Montacargas();
 		double obtenerCarga(); //getCarga
 		double cargar(double); //setCarga.
 		double obtenerPesoRestanteLibre();
@@ -29,6 +30,9 @@ Montacargas :: Montacargas(double _pesoMax){
 	pesoActual = 0;
 	TotalCargado = 0;
 	cantidadDeCargas = 0;
+}
+
+Montacargas :: ~Montacargas(){
 }
 
 double Montacargas :: obtenerCarga(){
