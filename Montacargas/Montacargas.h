@@ -12,7 +12,7 @@ class Montacargas {
 	public:
 		// Public Declarations
 		Montacargas(double);
-		double obtenerCarga( ); //getCarga
+		double obtenerCarga(); //getCarga
 		double cargar(double); //setCarga.
 		double obtenerPesoRestanteLibre();
 		double descargar();
