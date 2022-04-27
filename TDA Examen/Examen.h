@@ -53,7 +53,7 @@ double Examen::getNota(){
 }
 void Examen :: setRevision(double _notaCambiada){
 	notaCambiada = _notaCambiada;
-	if ((notaCambiada < nota)||(notaCambiada>10)){
+	if ((notaCambiada < nota)||(notaCambiada>10)||(nota ==0)){
 		nota = nota;
 	}
 	else
