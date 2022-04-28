@@ -12,10 +12,11 @@ class Examen {
 		
 		/*crea el examen recibiendo como parametro el nombre del alumno*/
 		Examen(string);
-		
+		~Examen();
 		/* pre: Se coloca una nota entre 1 y 10
 		   post: 
 		*/
+		
 		void setNota(double);
 		double getNota();
 		
@@ -33,7 +34,9 @@ Examen :: Examen(string _alumno){
 	alumno = _alumno;
 
 }
-
+Examen :: ~Examen(){
+	//cout<<"Destroyed!"<<endl;
+}
 string Examen::getNombre(){
 	return alumno;
 }
