@@ -13,7 +13,7 @@ class Montacargas {
 		// Public Declarations
 		Montacargas(double);
 		~Montacargas();
-		double obtenerCarga(); //getCarga
+		double obtenerCarga( ); //getCarga
 		double cargar(double); //setCarga.
 		double obtenerPesoRestanteLibre();
 		double descargar();
@@ -31,8 +31,8 @@ Montacargas :: Montacargas(double _pesoMax){
 	TotalCargado = 0;
 	cantidadDeCargas = 0;
 }
-
 Montacargas :: ~Montacargas(){
+	cout<<endl<<endl<<endl<<" El objeto se destruyo correctamente."<<endl;
 }
 
 double Montacargas :: obtenerCarga(){
