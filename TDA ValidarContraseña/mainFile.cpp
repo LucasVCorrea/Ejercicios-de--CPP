@@ -7,7 +7,7 @@ int main() {
 	
 	ValidarContrasenia *miPassword = new ValidarContrasenia;
 	
-	miPassword->setContrasenia("algoritmos");
+	miPassword->setContrasenia("algori");
 	
 	try{
 		miPassword->verSiEsValida();
