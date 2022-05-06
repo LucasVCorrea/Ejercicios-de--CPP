@@ -39,7 +39,7 @@ ValidarContrasenia::~ValidarContrasenia(){
 		
 		else{
 			this->tieneMayuscula = false;
-			throw "La contrase�a no tiene mayusculas.";
+			throw "La contraseña no tiene mayusculas.";
 		}		
 		return this->tieneMayuscula;
 	}
@@ -63,22 +63,36 @@ ValidarContrasenia::~ValidarContrasenia(){
 		}
 		else{
 			this->tieneNumero = false;
-			throw "La contrase�a no tiene ningun caracter numerico.";	
+			throw "La contraseña no tiene ningun caracter numerico.";	
 		}
 		return this->tieneNumero;
 		
 	}
-	
+		
+	bool ValidarContrasenia::checkLongitud(){
+		
+		if (this->getContrasenia().size()<8){
+			this->cumpleLongitud = false;
+			throw "La contraseña no cumple con la longitud de 8 caracteres minimo.";
+			
+		}
+			
+		else{
+			this->cumpleLongitud = true;
+			
+		}
+		return this->cumpleLongitud;
+	}
 	
 	bool  ValidarContrasenia::verSiEsValida(){
-		if ((this->checkMayusc()) && (this->checkNumero())){
+		if ((this->checkLongitud()) && (this->checkNumero()) && (this->checkMayusc())){
 			this->esValida = true;
-			cout<<"Su contrase�a es valida."<<endl;
+			cout<<"Su contraseña es valida."<<endl;
 		}
 		
 		else{
 
-			throw "Su contrase�a no es valida.";
+			throw "Su contraseña no es valida.";
 		}
 	
 	return this->esValida;
