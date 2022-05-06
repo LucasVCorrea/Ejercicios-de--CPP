@@ -1,4 +1,5 @@
 #include "validarContrasenia.h"
+#include <cstring>
 #include <iostream>
 
 using namespace std;
