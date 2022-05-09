@@ -26,7 +26,7 @@ class IndicadorDeCanales
 			Pre: ingresa + si quere subir 1 canal, - si quiere bajar un canal
 			post: se realiza el cambio de canal
 		*/
-		void subirOBajarCanal(char);
+		void subirOBajarCanal(char instruccion);
 
 
 		int getCanalActual();
