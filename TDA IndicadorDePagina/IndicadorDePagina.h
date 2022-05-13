@@ -11,9 +11,24 @@ class IndicadorDePagina
 		
 	public:
 		
+		/*
+			pre: -
+			pos: se crea el libro con su nombre y la cantidad de paginas totales
+		*/
+		
 		IndicadorDePagina(std::string nombreDelLibro,int paginasTotales);
-		~IndicadorDePagina();
+		virtual~IndicadorDePagina();
+		
+		/*
+			pre: -
+			pos: pasa una pagina
+		*/
 		void pasarDePagina();
+
+		/*
+			pre: -
+			pos: vuelve una pagina			
+		*/
 		void volverUnaPagina();
 		int getPaginaActual();	
 		int getPaginasTotales();
