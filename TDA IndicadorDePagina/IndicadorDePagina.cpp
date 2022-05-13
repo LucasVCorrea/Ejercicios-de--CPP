@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 
-
 IndicadorDePagina::IndicadorDePagina(std::string nombreDelLibro,int paginasTotales){
 	
 	this->paginaActual = 1;
@@ -11,7 +10,7 @@ IndicadorDePagina::IndicadorDePagina(std::string nombreDelLibro,int paginasTotal
 }
 
 IndicadorDePagina::~IndicadorDePagina(){
-	std::cout<<" Se rompio el libro de "<<this->getNombreLibro()<<std::endl;
+//	std::cout<<" Se rompio el libro de "<<this->getNombreLibro()<<std::endl;
 }
 
 int IndicadorDePagina::getPaginasTotales(){
@@ -23,10 +22,16 @@ std::string IndicadorDePagina::getNombreLibro(){
 }
 
 void IndicadorDePagina::pasarDePagina(){
+	if ((this->getPaginaActual()) >= (this->getPaginasTotales())){
+		throw "no quedan mas paginas por recorrer.";
+	}
 	this->paginaActual++;
 }
 
 void IndicadorDePagina::volverUnaPagina(){
+	if (this->getPaginaActual() <= 1){
+		throw "no se puede volver mas paginas.";
+	}
 	this->paginaActual--;
 }
 
