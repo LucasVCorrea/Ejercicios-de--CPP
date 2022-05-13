@@ -10,7 +10,7 @@ IndicadorDePagina::IndicadorDePagina(std::string nombreDelLibro,int paginasTotal
 }
 
 IndicadorDePagina::~IndicadorDePagina(){
-//	std::cout<<" Se rompio el libro de "<<this->getNombreLibro()<<std::endl;
+
 }
 
 int IndicadorDePagina::getPaginasTotales(){
