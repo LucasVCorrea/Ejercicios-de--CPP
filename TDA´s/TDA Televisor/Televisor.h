@@ -2,7 +2,7 @@
 #define TELEVISOR_H
 #include "Entrada.h"
 
-enum estadoDelTelevisor{
+enum EstadoDelTelevisor{
 	Prendido, Apagado
 };
 
@@ -11,7 +11,8 @@ const static unsigned int UltimoCanal = 140;
 class Televisor
 {
 	private:
-		unsigned int cantidadDeEntradas,canalActual;
+		unsigned int cantidadDeEntradas;
+		unsigned int canalActual;
 		Entrada** entradas;
 		void validarEntrada(unsigned int numeroDeEntrada);
 		void validarEstado();
