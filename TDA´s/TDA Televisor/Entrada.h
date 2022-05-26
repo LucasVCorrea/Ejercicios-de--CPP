@@ -10,7 +10,8 @@ class Entrada
 
 	private:
 		estadoDeEntrada estado;
-		unsigned int numero,cantidadDeUsos;	
+		unsigned int numero;
+		unsigned int cantidadDeUsos;	
 		char instruccion;
 	
 	public:
