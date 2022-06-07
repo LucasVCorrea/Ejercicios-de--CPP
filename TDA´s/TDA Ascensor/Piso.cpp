@@ -1,27 +1,26 @@
 #include "Piso.h"
 
-Piso::Piso(int piso){
-	if(piso < 0){
-		throw "Piso incorrecto";
+Piso::Piso(unsigned int numero){
+	if(numero < 0){
+		throw "El piso registrado es invalido";
 	}
 	
-	this->piso = piso;
-	this->cantidadDeApariciones = 0;
+	this->numero = numero;
+	this->cantidadVisitas = 0;
 }
 
 Piso::~Piso(){
 	
 }
 
-int Piso::getCantidadDeApariciones(){
-	return this->cantidadDeApariciones;
+unsigned int Piso::getCantidadVisitas(){
+	return this->cantidadVisitas;
 }
 
-int Piso::getNumero(){
-	return this->piso;
+unsigned int Piso::getNumero(){
+	return this->numero;
 }
 
-void Piso::contarAparicion(){
-	this->cantidadDeApariciones++;
+void Piso::registrarVisita(){
+	this->cantidadVisitas++;
 }
-
