@@ -1,86 +1,82 @@
 #include "Ascensor.h"
 
-Ascensor::Ascensor(int cantidadDePisos){
-	if(cantidadDePisos < 0){
-		throw "Los pisos son mayores o iguales a 0";
+Ascensor::Ascensor(unsigned int cantidadPisos){
+	if(cantidadPisos <= 0){
+		throw "la cantidad de pisos debe ser mayor o igual a 1";
 	}
-	this->cantidadDePisos = cantidadDePisos;
-	this->totalDeBajadas = 0;
-	this->totalDeSubidas = 0;
-	this->pisoActual = 0;
-	this->desplazamiento = 0;
-	this->pisos = new Piso*[this->cantidadDePisos];
 	
-	for(int i = 0;i<=this->cantidadDePisos;i++){
-		this->pisos[i] = new Piso(i);
+	this->cantidadPisos = cantidadPisos;
+	this->pisoActual = 0;
+	this->bajadas = 0;
+	this->subidas = 0;
+	this->pisos = new Vector<Piso *>(this->cantidadPisos, 0);
+	
+	for(int i = 0; i < this->cantidadPisos; i++){
+		this->pisos->agregar(i, new Piso(i));
 	}
 }
 
 Ascensor::~Ascensor(){
-	for(int i = 0;i<=this->cantidadDePisos;i++){
-		delete this->pisos[i];
-	}
-	delete this->pisos;
-}
-
-void Ascensor::validarDireccionamiento(int piso){
-	
-	if(piso > this->getPisoActual()){
-		this->totalDeSubidas += this->getDesplazamiento();
+	for(int i = 0; i < this->getCantidadPisos(); i++){
+		delete this->pisos->obtener(i);
 	}
 	
-	if(piso < this->getPisoActual()){
-		this->totalDeBajadas -= this->getDesplazamiento();
-	}
+	delete []this->pisos;
 }
 
-int Ascensor::getCantidadDePisos(){
-	return this->cantidadDePisos;
+unsigned int Ascensor::getCantidadPisos(){
+	return this->cantidadPisos;
 }
 
-int Ascensor::getPisoActual(){
+unsigned int Ascensor::getPisoActual(){
 	return this->pisoActual;
 }
-int Ascensor::getTotalDePisosSubidos(){
-	return this->totalDeSubidas;
+
+bool Ascensor::esValido(unsigned int piso){
+	return ((piso >= 0) && (piso <= this->getCantidadPisos()));
 }
 
-int Ascensor::getTotalDePisosBajados(){
-	return this->totalDeBajadas;
-}
-
-int Ascensor::getDesplazamiento(){
-	return this->desplazamiento;
-}
-
-
-void Ascensor::llamarDesde(int piso){
-	if((piso < 0) || (piso > this->getCantidadDePisos())){
-		throw "El piso no existe";
+void Ascensor::validarPiso(unsigned int piso){
+	if(!esValido(piso)){
+		throw "el piso ingresado no es valido";
 	}
-	
-	if(piso == this->getPisoActual()){
+	if(piso == this->pisoActual){
 		throw "El ascensor ya esta en ese piso";
 	}
-	this->desplazamiento = (piso - this->pisoActual);
-	validarDireccionamiento(piso);
-	this->pisoActual = piso;
-	this->pisos[piso]->contarAparicion();
-
 }
 
-int Ascensor::getCantidadDeVecesQueFueAlPiso(int piso){
-	if((piso < 0) || (piso > this->getCantidadDePisos())){
-		throw "El piso no existe";
+unsigned int Ascensor::recorrido(unsigned int piso){
+	unsigned int pisosMovidos;
+	if(piso > this->pisoActual){
+		pisosMovidos = (piso - this->pisoActual);
+		this->subidas++;
 	}
+	else{
+		pisosMovidos = (this->pisoActual - piso);
+		this->bajadas++;
+	}
+	return pisosMovidos;
+}
+
+unsigned int Ascensor::llamarAscensor(unsigned int piso){
+	validarPiso(piso);
 	
-	return this->pisos[piso]->getCantidadDeApariciones();
+	unsigned int recorridoRealizado = recorrido(piso);
+	this-> pisoActual = piso;
+	this->pisos->obtener(piso)->registrarVisita();
+	
+	return recorridoRealizado;
 }
 
-int Ascensor::getPiso(int pisoDeMuestra){
-	return pisoDeMuestra;
+unsigned int Ascensor::verHistorico(unsigned int piso){
+	validarPiso(piso);
+	return this->pisos->obtener(piso)->getCantidadVisitas();
 }
 
+unsigned int Ascensor::pisosBajados(){
+	return this->bajadas;
+}
 
-
-
+unsigned int Ascensor::pisosSubidos(){
+	return this->subidas;
+}
