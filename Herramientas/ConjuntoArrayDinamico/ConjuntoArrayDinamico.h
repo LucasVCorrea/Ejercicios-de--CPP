@@ -5,13 +5,12 @@ template <class T>  class Conjunto
 
 {
 	private:
-  
 		unsigned int size;
 		int espacioDisponible;
 		T* vectorDinamico;
 		
+		
 	public:
-  
 		Conjunto(unsigned int size, T primerElemento){
 			
 			if(size < 1){
@@ -32,6 +31,10 @@ template <class T>  class Conjunto
 		void agregar(T elemento){
 			int aux = 0;
 			for(int i=0; i<this->getSize(); i++){
+				if(this->vectorDinamico[i] == elemento){
+					throw "El elemento ya fue agregado";
+				}
+				
 				if(this->vectorDinamico[i] != 0){
 					aux++;
 				}
@@ -43,19 +46,15 @@ template <class T>  class Conjunto
 				throw "no queda mas espacio";
 			}
 			this->espacioDisponible = this->getSize() - aux - 1;
-      
 		}
 		
 		int mostrarElementoEnPosicion(int posicion){
 		
 			return this->vectorDinamico[posicion];
-      
 		}
 			 
 		int getEspacioDisponible(){
-    
 			return this->espacioDisponible;
-      
 		}
 		
 		int getSize(){
@@ -69,6 +68,7 @@ template <class T>  class Conjunto
 		virtual ~Conjunto(){
 			delete []this->vectorDinamico;
 		}
-		
-    
+
 };
+
+#endif
