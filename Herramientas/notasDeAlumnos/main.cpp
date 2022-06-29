@@ -13,8 +13,8 @@ int main(){
 	archivo<<"|Fecha: "<<fecha<<" |"<<endl;
 	cout<<"Ingrese la cantidad de alumnos: ";cin>>cantidadAlumnos;
 	
-	string arrClave[cantidadAlumnos];
-	double arrNotas[cantidadAlumnos];
+	string* arrClave = new string[cantidadAlumnos];
+	double* arrNotas = new double[cantidadAlumnos];
 	
 	for(int i = 0; i < cantidadAlumnos; i++){	
 		
@@ -29,5 +29,7 @@ int main(){
 	archivo<<endl;
 	
 	archivo.close();
+	delete arrClave;
+	delete arrNotas;
 	return 0;
 }
