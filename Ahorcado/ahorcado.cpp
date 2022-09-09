@@ -1,7 +1,7 @@
 #include "Ahorcado.h"
 
 Ahorcado::Ahorcado(){
-	this->contador = 5;
+	this->contador = 6;
 	this->intentos = 0;
 	this->listaPalabras = new std::string[10] {"cars","avengers","harry-potter","shrek","she-hulk","thor","daredevil","venom","ant-man","wolverine"};
 	this->suma = 0;
@@ -11,8 +11,10 @@ Ahorcado::Ahorcado(){
 }
 
 void Ahorcado::parteUno(){
+	
 	for(int i = 0; i < this->palabra.size(); i++){
 		this->palabraAux[i] = '_';	
+		cout<<palabraAux[i]<<' ';
 	}
 }
 
@@ -21,8 +23,24 @@ void Ahorcado::ciclar(){
 	while (this->contador!=0 && this->palabra != palabraAux){ 
 		
 		
+		if(this->contador == 6){
+			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|"<<endl<<"|"<<endl<<"|"<<endl;
+		}else if(this->contador == 5){
+			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|"<<endl<<"|"<<endl;
+		}else if(this->contador == 4){
+			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|   |"<<endl<<"|"<<endl;
+		}else if(this->contador == 3){
+			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|  /| "<<endl<<"|"<<endl;
+		}else if(this->contador == 2){
+			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|  /|\\ "<<endl<<"|"<<endl;
+		}else if(this->contador == 1){
+			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|  /|\\ "<<endl<<"|  /"<<endl;
+		}
+
+		
 		this->intentos++; 
-		cout<<"Ingrese una letra: ";cin>>this->letra;cout<<endl;
+
+		cout<<endl<<"Ingrese una letra: ";cin>>this->letra;cout<<endl;
 		for(int i = 0; i < this->palabra.size(); i++){
 			
 			if (this->palabra[i] == this->letra){
@@ -38,18 +56,24 @@ void Ahorcado::ciclar(){
 			this->contador--;
 		}
 		
+
+
+
 		cout<<endl<<"vidas: "<<this->contador<<endl<<endl;
 		this->suma = 0;
 		j++;
+	}
+	if(this->contador == 0){
+			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|  /|\\ "<<endl<<"|  / \\"<<endl;
 	}
 }
 
 void Ahorcado::final(){
 		if(this->contador == 0){
-		cout<<"Mas suerte la proxima!";
+		cout<<endl<<"Mas suerte la proxima!";
 	}
 	else{
-		cout<<"Felicitaciones! has adivinado la palabra en "<<this->intentos<<" intentos";
+		cout<<endl<<"Felicitaciones! has adivinado la palabra en "<<this->intentos<<" intentos";
 	}
 }
 
