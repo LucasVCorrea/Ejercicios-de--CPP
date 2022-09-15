@@ -5,8 +5,13 @@ using namespace std;
 
 int main() {
 	Ahorcado *ahorcado = new Ahorcado();
-	ahorcado->Jugar();
-	
+	try{
+		ahorcado->Jugar();
+		delete ahorcado;
+		
+	}catch(const char *x){
+			cout<<x;
+	}
 	
 	return 0;
 }
