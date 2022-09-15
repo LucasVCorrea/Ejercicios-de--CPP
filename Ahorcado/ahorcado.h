@@ -2,28 +2,43 @@
 #define AHORCADO_H
 #include <cstdlib>
 #include <iostream>
+#include <ctime>
 
 using namespace std;
 
 class Ahorcado
 {
 	private:
-		std::string* listaPalabras;
+		string* listaPalabras;
+		string* listaCantantes;
+		
 		char letra;
-		int contador ;
-		int suma ;
+		char opcion;
+		char temaElegido;
+		
+		int vidas;
+		int letrasEncontradas ;
 		int intentos;
-		int valor ;
-		std::string palabra ; 
-		std::string palabraAux ;
+		int randomNumber;
+		
+		string palabra; 
+		string palabraAux;
+		string palabraArriesgada;
+		
+		void elegirTema();
 		void parteUno();
 		void ciclar();
 		void final();
+		void reset();
+		
 		
 	public:
 		Ahorcado();
-
+		virtual ~Ahorcado();
 		void Jugar();
+		int generaRandomNumber();
+		void mostrarTemas();
+		
 		
 			
 };
