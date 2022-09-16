@@ -68,7 +68,7 @@ void Ahorcado::ciclar(){
 }
 
 void Ahorcado::final(){
-	if((this->vidas == 0) || this->palabraArriesgada!=this->palabra){
+	if((this->vidas == 0) && this->palabraArriesgada!=this->palabra){
 		cout<<endl<<"Mas suerte la proxima! (la palabra era '"<< this->palabra <<"')";
 	}
 	else{
