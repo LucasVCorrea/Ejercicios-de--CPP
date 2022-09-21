@@ -15,19 +15,24 @@ void Ahorcado::ciclar(){
 		if(this->vidas == 6){
 			imprimeMonigote(6);
 			
-		}else if(this->vidas == 5){
+		}
+		else if(this->vidas == 5){
 			imprimeMonigote(5);
 			
-		}else if(this->vidas == 4){
+		}
+		else if(this->vidas == 4){
 			imprimeMonigote(4);
 			
-		}else if(this->vidas == 3){
+		}
+		else if(this->vidas == 3){
 			imprimeMonigote(3);
 			
-		}else if(this->vidas == 2){
+		}
+		else if(this->vidas == 2){
 			imprimeMonigote(2);
 			
-		}else if(this->vidas == 1){
+		}
+		else if(this->vidas == 1){
 			imprimeMonigote(1);
 		}
 		
