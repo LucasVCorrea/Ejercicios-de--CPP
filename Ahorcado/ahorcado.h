@@ -6,18 +6,19 @@
 
 using namespace std;
 
-class Ahorcado
-{
+class Ahorcado{
+	
 	private:
-		string* listaPalabras;
+		string* listaMarvel;
 		string* listaCantantes;
-		
+		string* listaPersonajes;
+	
 		char letra;
 		char opcion;
 		char temaElegido;
 		
 		int vidas;
-		int letrasEncontradas ;
+		int letrasEncontradas;
 		int intentos;
 		int randomNumber;
 		
@@ -25,22 +26,50 @@ class Ahorcado
 		string palabraAux;
 		string palabraArriesgada;
 		
-		void elegirTema();
 		void parteUno();
 		void ciclar();
 		void final();
-		void reset();
+		void reset();	
+		void limpiarPalabra(){
+			for(int i = 0; i < this->palabra.size(); i++){
+				this->palabraAux[i] = '_';	
+				cout<<palabraAux[i]<<' ';
+			}
+		}
 		
+		int generaRandomNumber();
+		void mostrarTemas();
+		void elegirTema();
 		
 	public:
 		Ahorcado();
 		virtual ~Ahorcado();
 		void Jugar();
-		int generaRandomNumber();
-		void mostrarTemas();
-		
-		
-			
+		void imprimeMonigote(int vidas){
+			switch(vidas){
+				case 6:
+					cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|"<<endl<<"|"<<endl<<"|"<<endl;
+					break;
+				case 5:
+					cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|"<<endl<<"|"<<endl;
+					break;
+				case 4:
+					cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|   |"<<endl<<"|"<<endl;
+					break;
+				case 3:
+					cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|  /| "<<endl<<"|"<<endl;
+					break;
+				case 2:
+					cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|  /|\\ "<<endl<<"|"<<endl;
+					break;
+				case 1:
+					cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|  /|\\ "<<endl<<"|  /"<<endl;
+					break;
+				case 0:
+					cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|  /|\\ "<<endl<<"|  / \\"<<endl;
+			}
+		};
+
 };
 
 #endif
