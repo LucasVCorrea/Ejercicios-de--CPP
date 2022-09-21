@@ -5,11 +5,7 @@ Ahorcado::Ahorcado(){
 }
 
 void Ahorcado::parteUno(){
-	
-	for(int i = 0; i < this->palabra.size(); i++){
-		this->palabraAux[i] = '_';	
-		cout<<palabraAux[i]<<' ';
-	}
+	limpiarPalabra();
 }
 
 void Ahorcado::ciclar(){
@@ -17,17 +13,22 @@ void Ahorcado::ciclar(){
 	while (this->vidas!=0 && this->palabra != palabraAux){ 
 		
 		if(this->vidas == 6){
-			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|"<<endl<<"|"<<endl<<"|"<<endl;
+			imprimeMonigote(6);
+			
 		}else if(this->vidas == 5){
-			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|"<<endl<<"|"<<endl;
+			imprimeMonigote(5);
+			
 		}else if(this->vidas == 4){
-			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|   |"<<endl<<"|"<<endl;
+			imprimeMonigote(4);
+			
 		}else if(this->vidas == 3){
-			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|  /| "<<endl<<"|"<<endl;
+			imprimeMonigote(3);
+			
 		}else if(this->vidas == 2){
-			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|  /|\\ "<<endl<<"|"<<endl;
+			imprimeMonigote(2);
+			
 		}else if(this->vidas == 1){
-			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|  /|\\ "<<endl<<"|  /"<<endl;
+			imprimeMonigote(1);
 		}
 		
 		this->intentos++; 
@@ -63,17 +64,21 @@ void Ahorcado::ciclar(){
 	}
 	
 	if(this->vidas == 0){
-			cout<<endl<<" ___"<<endl<<"|   |"<<endl<<"|   O"<<endl<<"|  /|\\ "<<endl<<"|  / \\"<<endl;
+		imprimeMonigote(0);
 	}
 }
 
 void Ahorcado::final(){
-	if((this->vidas == 0) && this->palabraArriesgada!=this->palabra){
+	if(this->vidas == 0) {
 		cout<<endl<<"Mas suerte la proxima! (la palabra era '"<< this->palabra <<"')";
 	}
-	else{
+	else if(this->palabra == this->palabraAux || this->palabraArriesgada == this->palabra){
 		cout<<endl<<"Felicitaciones! has adivinado la palabra en "<<this->intentos<<" intentos"<<endl;
 	}
+	else{
+		cout<<endl<<"Mas suerte la proxima! (la palabra era '"<< this->palabra <<"')";	
+	}
+	
 	cout<<endl<<"Quieres jugar otra vez? (s/n): ";cin>>this->opcion;cout<<endl;
 	
 	if(this->opcion == 's'){ /// Back to game
@@ -81,6 +86,7 @@ void Ahorcado::final(){
 	}
 	else{
 		cout<<endl<<"Gracias por jugar!"<<endl;
+
 	}
 	
 }
@@ -88,9 +94,10 @@ void Ahorcado::final(){
 void Ahorcado::Jugar(){
 	this->mostrarTemas();
 	cout<<endl<<"Elija el tema: ";cin>>this->temaElegido;
-	this->elegirTema();
+	
 	cout<<"(tener en cuenta: las palabras se separan con un guion '-' )"<<endl<<endl;
 	this->reset();
+	this->elegirTema();
 	this->parteUno();
 	this->ciclar();
 	this->final();
@@ -98,50 +105,58 @@ void Ahorcado::Jugar(){
 }
 
 Ahorcado::~Ahorcado(){
-	delete[] this->listaCantantes;
-	delete[] this->listaPalabras;
+
 }
 
 int Ahorcado::generaRandomNumber(){
 	srand(time(0)); // Initialize random number generator.
 
 	for(int i = 0;i < 1;i ++){
-		this->randomNumber = (rand() % 10);
+		this->randomNumber = (rand() % 21);
 	}
 
     return this->randomNumber;
 }
 
 void Ahorcado::reset(){
+	this->listaMarvel = new std::string[20]  {"mighty-thor","iron-man","spider-man","capitan-america","she-hulk",
+	"wolverine","daredevil","venom","ant-man","capitana-marvel","moonknight","luke-cage","black-panther","carnage","dr-strange",
+	"black-widow","scarlet-witch","vision","reed-richards","kingping"};
+	this->listaCantantes = new std::string[20] {"bad-bunny","dua-lipa","ed-sheeran","la-mona-gimenez","harry-styles",
+	"justin-bieber","duki","travis-scott","ac/dc","miranda","maria-becerra","kanye-west","bruce-dickinson","j-balvin","quevedo","rosalia","playboi-carti","pablo-lescano","myke-towers","nicki-nicole"};
+	this->listaPersonajes = new std::string[20] {"thresh","skarner","udyr","tristana","urgot","lucian","jinx","zyra","aurelion-sol",
+	"blitzcrank","yummy","yasuo","kindred","ahri","morgana","ivern","heimerdinger","braum","yorick","sion"};
 	
 	this->vidas = 6;
 	this->intentos = 0;
-	this->listaPalabras = new std::string[12] {"morbius","iron-man","spider-man","capitan-america","she-hulk","thor","daredevil","venom","ant-man","x-men","moonknight","luke-cage"};
-	this->listaCantantes = new std::string[12] {"bad-bunny","dua-lipa","ed-sheeran","la-mona-gimenez","harry-styles","justin-bieber","duki","travis-scott","ac/dc","miranda","maria-becerra","kanye-west"};
 	this->letrasEncontradas = 0;
-	this->randomNumber = this->generaRandomNumber() ;
-	this->palabraAux = this->palabra;
+	this->randomNumber = this->generaRandomNumber();
 }
 
 void Ahorcado::elegirTema(){
 
 	switch(this->temaElegido){
 		case '1':
-			this->palabra = this->listaPalabras[this->randomNumber];
+			this->palabra = this->listaMarvel[this->randomNumber];
+			this->palabraAux = this->palabra;
 			break;
 		case '2':
 			this->palabra = this->listaCantantes[this->randomNumber];
+			this->palabraAux = this->palabra;
+			break;
+		case '3':
+			this->palabra = this->listaPersonajes[this->randomNumber];
+			this->palabraAux = this->palabra;
 			break;
 		default:
-			cout<<"Se ingreso un numero invalido, se elige 'Peliculas/Series de marvel' por default"<<endl;
-			this->palabra = this->listaPalabras[this->randomNumber];
+			cout<<"Se ingreso un numero invalido, se elige 'Personajes de marvel' por default"<<endl;
+			this->palabra = this->listaMarvel[this->randomNumber];
 			break;
-			
 	}
 }
 
 void Ahorcado::mostrarTemas(){
-	string listaDeTemas[] = {"Peliculas/Series de marvel", "Cantantes/Bandas"};
+	string listaDeTemas[] = {"Personajes de marvel", "Cantantes/Bandas","Champs del lol"};
 	int tamanio = (sizeof(listaDeTemas) / sizeof(string));
 	cout<<"Lista de temas:"<<endl;
 	for (int i = 0; i < tamanio; i++){
